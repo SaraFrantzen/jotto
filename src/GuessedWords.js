@@ -16,12 +16,14 @@ const GuessedWords = ({ guessedWords }) => {
     ));
     contents = (
       <div data-test="guessed-words">
-        <h3>Guessed words</h3>
+      <h3>Guessed words</h3>
         <table>
+              
           <thead>
             <tr>
-              <th>Guess</th>
-              <th>Matching Letters</th>
+              <th>Guess |
+              </th>
+              <th> Matching Letters</th>
             </tr>
           </thead>
           <tbody>{guessedWordsRows}</tbody>
