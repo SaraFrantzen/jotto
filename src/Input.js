@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-const Input = ({ secretWord }) => {
+const Input = ({ success, secretWord }) => {
   const [currentGuess, setCurrentGuess] = useState("");
+
+  if (success) {
+   return <div data-test="component-input" />;
+  }
   
   return (
     <div data-test="component-input">
@@ -14,7 +18,15 @@ const Input = ({ secretWord }) => {
           value={currentGuess}
           onChange={(e) => setCurrentGuess(e.target.value)}
         />
-        <button data-test="submit-button">Submit</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setCurrentGuess("");
+          }}
+          data-test="submit-button"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
@@ -23,4 +35,5 @@ const Input = ({ secretWord }) => {
 Input.propTypes = {
   secretWord: PropTypes.string.isRequired,
 };
+
 export default Input;
