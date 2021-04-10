@@ -1,10 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 import App from "./App";
-import { findByTestAttr } from "../test/testUtils";
+import { findByTestAttr, storeFactory } from "../test/testUtils";
+import { Provider } from "react-redux";
 
 const setup = (state = {}) => {
-  const wrapper = mount(<App />);
+  const store = storeFactory();
+  const wrapper = mount(<Provider store={store}> <App /></Provider>);
   //add value to input-box
   const inputBox = findByTestAttr(wrapper, "input-box");
   inputBox.simulate("change", { target: { value: "train" } });
