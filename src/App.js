@@ -4,11 +4,13 @@ import GuessedWords from "./GuessedWords";
 import Input from "./Input";
 import { useEffect } from "react";
 import { getSecretWord } from "./actions";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const success = false;
-  const secretWord = "party";
-  const guessedWord = [];
+  //use useSelector hook to get the values from state
+  const success = useSelector(state => state.success)
+  const guessedWords = useSelector(state => state.guessedWords)
+ const secretWord = 'party'
 
   useEffect(() => {
     getSecretWord();

@@ -4,8 +4,10 @@ import App from "./App";
 import { findByTestAttr, storeFactory } from "../test/testUtils";
 import { Provider } from "react-redux";
 
-const setup = (state = {}) => {
-  const store = storeFactory();
+jest.mock('./actions')
+
+const setup = (initialState = {}) => {
+  const store = storeFactory(initialState);
   const wrapper = mount(<Provider store={store}> <App /></Provider>);
   //add value to input-box
   const inputBox = findByTestAttr(wrapper, "input-box");
@@ -42,7 +44,7 @@ describe("some words guessed", () => {
   });
   test("adds rows to guessedWords table", () => {
     const guessedWordNodes = findByTestAttr(wrapper, "guessed-word");
-    expect(guessedWordNodes.length).toBe(2);
+    expect(guessedWordNodes).toHaveLength(2);
   });
 });
 
